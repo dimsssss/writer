@@ -37,6 +37,7 @@ jobs:
             echo "SALT_ROUND=${SALT_ROUND}" >> .env
             echo "TIMEZONE=${TIMEZONE}" >> .env
             cat .env
+            npx sequelize-cli db:migrate
             npm run test
 
 workflows:
