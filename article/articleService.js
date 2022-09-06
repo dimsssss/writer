@@ -1,5 +1,6 @@
 const { convertPasswordInArticle, splitArticleAndFindCondition } = require("./articleDecorator");
 const articleRepository = require("./articleRepository");
+const { deletePolicy } = require("./articlePolicy");
 const UnValidResultException = require("./exception/UnValidResultException");
 
 const postUserArticle = async (article) => {
@@ -13,13 +14,12 @@ const updateUserArticle = async (article) => {
   return await articleRepository.updateArticle(updateArticle, condition);
 };
 
-const deleteUserArticle = async (article) => {
-  const encryptPassword = await articleRepository.getPassword(article.articleId);
-  if (!encryptPassword) {
-    throw new UnValidResultException();
-  }
+const deleteUserArticle = async (articleInfomation) => {
+  const article = await articleRepository.getArticle(articleInfomation.articleId);
 
-  const [_, condition] = await splitArticleAndFindCondition(article, encryptPassword);
+  await deletePolicy(articleInfomation, article);
+
+  const [_, condition] = await splitArticleAndFindCondition(articleInfomation, article.password);
   return await articleRepository.deleteArticle(condition);
 };
 
