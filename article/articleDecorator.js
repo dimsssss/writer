@@ -7,8 +7,8 @@ const convertPasswordInArticle = async (article) => {
 };
 
 const splitArticleAndFindCondition = async (article, encryptPassword) => {
-  if (await !isEqualPassword(article.password, encryptPassword)) {
-    throw UnValidResultException();
+  if (!(await isEqualPassword(article.password, encryptPassword))) {
+    throw new UnValidResultException();
   }
 
   const condition = {

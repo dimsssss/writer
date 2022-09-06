@@ -1,0 +1,64 @@
+{
+  "deletePolicy": [
+    [
+      [
+        {
+          "userId": "7d0cf64a-2c53-4a0a-b5f2-6209a7ff662f",
+          "articleId": "5f04f51b-64de-4200-a2d2-7033de275f7b",
+          "password": "./,mmn"
+        },
+        {
+          "createdAt": "2022-09-06T12:12:02.727Z",
+          "updatedAt": "2022-09-06T12:12:02.728Z",
+          "articleId": "5f04f51b-64de-4200-a2d2-7033de275f7b",
+          "sequenceId": 93,
+          "userId": "7d0cf64a-2c53-4a0a-b5f2-6209a7ff662f",
+          "title": "aaaaaaaaaaaaaaaa😃aaa",
+          "content": "😃😃😃😃😃",
+          "password": "$2b$05$326IuoERIPNJG5Y8eGhFoOvbUNYFFlwNtbVQxev4wFrISGFaN6aL6"
+        }
+      ],
+      ["게시글 패스워드가 다릅니다"]
+    ],
+    [
+      [
+        {
+          "userId": "77050b44-f9cf-433e-b895-4c958b3a2109",
+          "articleId": "5f04f51b-64de-4200-a2d2-7033de275f7b",
+          "password": "asds1ss"
+        },
+        {
+          "createdAt": "2022-09-06T12:12:02.727Z",
+          "updatedAt": "2022-09-06T12:12:02.728Z",
+          "articleId": "5f04f51b-64de-4200-a2d2-7033de275f7b",
+          "sequenceId": 93,
+          "userId": "7d0cf64a-2c53-4a0a-b5f2-6209a7ff662f",
+          "title": "aaaaaaaaaaaaaaaa😃aaa",
+          "content": "😃😃😃😃😃",
+          "password": "$2b$05$326IuoERIPNJG5Y8eGhFoOvbUNYFFlwNtbVQxev4wFrISGFaN6aL6"
+        }
+      ],
+      ["게시글 작성자가 다릅니다"]
+    ],
+    [
+      [
+        {
+          "userId": "918f364a-99ed-42c0-90e6-9b486a29257f",
+          "articleId": "5f04f51b-64de-4200-a2d2-7033de275f7b",
+          "password": "123sdasd"
+        },
+        {
+          "createdAt": "2022-09-06T12:12:02.727Z",
+          "updatedAt": "2022-09-06T12:12:02.728Z",
+          "articleId": "5f04f51b-64de-4200-a2d2-7033de275f7b",
+          "sequenceId": 93,
+          "userId": "7d0cf64a-2c53-4a0a-b5f2-6209a7ff662f",
+          "title": "aaaaaaaaaaaaaaaa😃aaa",
+          "content": "😃😃😃😃😃",
+          "password": "$2b$05$326IuoERIPNJG5Y8eGhFoOvbUNYFFlwNtbVQxev4wFrISGFaN6aL6"
+        }
+      ],
+      ["게시글 작성자가 다릅니다"]
+    ]
+  ]
+}
