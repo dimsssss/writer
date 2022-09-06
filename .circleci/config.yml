@@ -17,6 +17,10 @@ jobs:
       - run: docker run --name=writer -e MYSQL_ROOT_PASSWORD=1234 -e MYSQL_DATABASE=writer -p 6603:3306 -d mysql:8.0
       - node/install:
           node-version: "16.15"
+      - run:
+          command: |
+            touch .env
+            echo "test=$test" > .env
       - run: node --version
       - run: npm ci
       - save_cache:
