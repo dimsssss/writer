@@ -7,8 +7,8 @@ orbs:
 jobs:
   build:
     machine: true
-    environment:
-      test: $TEST_ENV
+    context:
+      - test
     steps:
       - git-shallow-clone/checkout
       - restore_cache:
@@ -21,7 +21,7 @@ jobs:
       - run:
           command: |
             touch .env
-            echo "$TEST_ENV" > .env
+            echo "$test" > .env
             cat .env
       - run: node --version
       - run: npm ci
