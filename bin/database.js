@@ -10,6 +10,7 @@ const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || "development";
 const config = require("../config/config");
 const db = {};
+const domainLocation = `${process.env.OLDPWD}/article/domain`;
 
 let sequelize;
 if (config.use_env_variable) {
@@ -23,14 +24,14 @@ if (config.use_env_variable) {
   );
 }
 
-fs.readdirSync(__dirname)
+fs.readdirSync(domainLocation)
   .filter((file) => {
     return (
       file.indexOf(".") !== 0 && file !== basename && file.slice(-3) === ".js"
     );
   })
   .forEach((file) => {
-    const model = require(path.join(__dirname, file))(
+    const model = require(path.join(domainLocation, file))(
       sequelize,
       Sequelize.DataTypes
     );

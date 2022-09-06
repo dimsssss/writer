@@ -7,7 +7,8 @@ orbs:
 jobs:
   build:
     machine: true
-    parallelism: 4
+    environment:
+      test: $TEST_ENV
     steps:
       - git-shallow-clone/checkout
       - restore_cache:
@@ -17,6 +18,11 @@ jobs:
       - run: docker run --name=writer -e MYSQL_ROOT_PASSWORD=1234 -e MYSQL_DATABASE=writer -p 6603:3306 -d mysql:8.0
       - node/install:
           node-version: "16.15"
+      - run:
+          command: |
+            touch .env
+            echo "$TEST_ENV" > .env
+            cat .env
       - run: node --version
       - run: npm ci
       - save_cache:
@@ -25,5 +31,4 @@ jobs:
             - ./node_modules
       - run:
           command: |
-            TEST=$(circleci tests glob "**/__tests__/unit/*.js" "**/__tests__/intergration/*.js" "**/__tests__/endpoint/*.js" | circleci tests split --split-by=timings)
-            npx jest $TEST
+            npm run test
