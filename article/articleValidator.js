@@ -30,6 +30,19 @@ const updateArticleBody = [
   }),
 ];
 
+const deleteArticleBody = [
+  body("articleId").isUUID(uuidVersion),
+  body("userId").isUUID(uuidVersion),
+  body("password").isStrongPassword({
+    minLength: 6,
+    minLowercase: 0,
+    minUppercase: 0,
+    minNumbers: 1,
+    minSymbols: 0,
+    returnScore: false,
+  }),
+];
+
 module.exports = {
   validateArticle,
   updateArticleBody,
