@@ -16,6 +16,12 @@ jobs:
       - run: docker run --name=writer -e MYSQL_ROOT_PASSWORD=1234 -e MYSQL_DATABASE=writer -p 6603:3306 -d mysql:8.0
       - node/install:
           node-version: "16.15"
+      - run: node --version
+      - run: npm ci
+      - save_cache:
+          key: v1-dependency-{{ checksum "package-lock.json" }}
+          paths:
+            - ./node_modules
       - run:
           command: |
             touch .env
@@ -31,14 +37,6 @@ jobs:
             echo "SALT_ROUND=${SALT_ROUND}" >> .env
             echo "TIMEZONE=${TIMEZONE}" >> .env
             cat .env
-      - run: node --version
-      - run: npm ci
-      - save_cache:
-          key: v1-dependency-{{ checksum "package-lock.json" }}
-          paths:
-            - ./node_modules
-      - run:
-          command: |
             npm run test
 workflow:
   build:
