@@ -7,8 +7,6 @@ orbs:
 jobs:
   build:
     machine: true
-    environment:
-      test: $TEST_ENV
     steps:
       - git-shallow-clone/checkout
       - restore_cache:
@@ -18,11 +16,6 @@ jobs:
       - run: docker run --name=writer -e MYSQL_ROOT_PASSWORD=1234 -e MYSQL_DATABASE=writer -p 6603:3306 -d mysql:8.0
       - node/install:
           node-version: "16.15"
-      - run:
-          command: |
-            touch .env
-            echo "$TEST_ENV" > .env
-            cat .env
       - run: node --version
       - run: npm ci
       - save_cache:
@@ -31,4 +24,24 @@ jobs:
             - ./node_modules
       - run:
           command: |
+            touch .env
+            echo "DATABASE=${DATABASE}" >> .env
+            echo "DATABASE_PORT=${DATABASE_PORT}" >> .env
+            echo "DATABASE_USER=${DATABASE_USER}" >> .env
+            echo "DIALECT=${DIALECT}" >> .env
+            echo "HOST=${HOST}" >> .env
+            echo "MAX=${MAX}" >> .env
+            echo "MIN=${MIN}" >> .env
+            echo "PASSWORD=${PASSWORD}" >> .env
+            echo "SALT=${SALT}" >> .env
+            echo "SALT_ROUND=${SALT_ROUND}" >> .env
+            echo "TIMEZONE=${TIMEZONE}" >> .env
+            cat .env
+            npx sequelize-cli db:migrate
             npm run test
+
+workflows:
+  build:
+    jobs:
+      - build:
+          context: test
