@@ -9,6 +9,15 @@ const crateArticle = async (article) => {
   }
 };
 
+const getPassword = async (articleId) => {
+  try {
+    const result = await articles.findOne({ where: { articleId }, raw: true });
+    return result.password;
+  } catch (err) {
+    throw err;
+  }
+};
+
 const updateArticle = async (article, condition) => {
   try {
     const result = await articles.update(article, { where: condition });
@@ -18,4 +27,4 @@ const updateArticle = async (article, condition) => {
   }
 };
 
-module.exports = { crateArticle, updateArticle };
+module.exports = { crateArticle, updateArticle, getPassword };
