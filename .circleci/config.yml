@@ -19,17 +19,17 @@ jobs:
       - run:
           command: |
             touch .env
-            echo "DATABASE=${DATABASE}" > .env
-            echo "DATABASE_PORT=${DATABASE_PORT}" > .env
-            echo "DATABASE_USER=${DATABASE_USER}" > .env
-            echo "DIALECT=${DIALECT}" > .env
-            echo "HOST=${HOST}" > .env
-            echo "MAX=${MAX}" > .env
-            echo "MIN=${MIN}" > .env
-            echo "PASSWORD=${PASSWORD}" > .env
-            echo "SALT=${SALT}" > .env
-            echo "SALT_ROUND=${SALT_ROUND}" > .env
-            echo "TIMEZONE=${TIMEZONE}" > .env
+            echo "DATABASE=${DATABASE}" >> .env
+            echo "DATABASE_PORT=${DATABASE_PORT}" >> .env
+            echo "DATABASE_USER=${DATABASE_USER}" >> .env
+            echo "DIALECT=${DIALECT}" >> .env
+            echo "HOST=${HOST}" >> .env
+            echo "MAX=${MAX}" >> .env
+            echo "MIN=${MIN}" >> .env
+            echo "PASSWORD=${PASSWORD}" >> .env
+            echo "SALT=${SALT}" >> .env
+            echo "SALT_ROUND=${SALT_ROUND}" >> .env
+            echo "TIMEZONE=${TIMEZONE}" >> .env
             cat .env
       - run: node --version
       - run: npm ci
