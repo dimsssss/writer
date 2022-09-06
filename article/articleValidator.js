@@ -1,4 +1,4 @@
-const { body, check } = require("express-validator");
+const { body } = require("express-validator");
 const uuidVersion = 4;
 
 const validateArticle = [
