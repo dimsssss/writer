@@ -26,10 +26,10 @@ jobs:
             echo "HOST=${HOST}" > .env
             echo "MAX=${MAX}" > .env
             echo "MIN=${MIN}" > .env
-            echo "PASSWORD=${PASSWORD}"
-            echo "SALT=${SALT}"
-            echo "SALT_ROUND=${SALT_ROUND}"
-            echo "TIMEZONE=${TIMEZONE}"
+            echo "PASSWORD=${PASSWORD}" > .env
+            echo "SALT=${SALT}" > .env
+            echo "SALT_ROUND=${SALT_ROUND}" > .env
+            echo "TIMEZONE=${TIMEZONE}" > .env
             cat .env
       - run: node --version
       - run: npm ci
