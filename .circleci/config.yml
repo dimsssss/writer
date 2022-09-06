@@ -7,8 +7,6 @@ orbs:
 jobs:
   build:
     machine: true
-    context:
-      - test
     steps:
       - git-shallow-clone/checkout
       - restore_cache:
@@ -32,3 +30,8 @@ jobs:
       - run:
           command: |
             npm run test
+workflow:
+  build:
+    jobs:
+      - build:
+          context: test
