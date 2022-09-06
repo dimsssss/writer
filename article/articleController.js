@@ -1,7 +1,6 @@
 const { validationResult } = require("express-validator");
 const { StatusCodes } = require("http-status-codes");
-const morgan = require("morgan");
-const { postUserArticle } = require("./articleService");
+const { postUserArticle, updateUserArticle } = require("./articleService");
 
 const postArticle = async (req, res) => {
   const error = validationResult(req);
@@ -28,7 +27,7 @@ const updateArticle = async (req, res) => {
 
   try {
     const article = req.body;
-    const result = await postUserArticle(article);
+    const result = await updateUserArticle(article);
     return res.status(StatusCodes.OK).send(result);
   } catch (err) {
     return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send();
