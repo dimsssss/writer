@@ -38,7 +38,8 @@ jobs:
             echo "TIMEZONE=${TIMEZONE}" >> .env
             cat .env
             npm run test
-workflow:
+
+workflows:
   build:
     jobs:
       - build:
