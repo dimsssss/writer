@@ -27,4 +27,13 @@ const updateArticle = async (article, condition) => {
   }
 };
 
-module.exports = { crateArticle, updateArticle, getPassword };
+const deleteArticle = async (condition) => {
+  try {
+    const result = await articles.destroy({ where: condition });
+    return result;
+  } catch (err) {
+    throw new DatabaseException(err);
+  }
+};
+
+module.exports = { crateArticle, updateArticle, getPassword, deleteArticle };
