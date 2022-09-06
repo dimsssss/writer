@@ -9,4 +9,13 @@ const crateArticle = async (article) => {
   }
 };
 
-module.exports = { crateArticle };
+const updateArticle = async (article, condition) => {
+  try {
+    const result = await articles.update(article, { where: condition });
+    return result;
+  } catch (err) {
+    throw new DatabaseException(err);
+  }
+};
+
+module.exports = { crateArticle, updateArticle };
