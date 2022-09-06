@@ -29,5 +29,4 @@ jobs:
             - ./node_modules
       - run:
           command: |
-            TEST=$(circleci tests glob "**/__tests__/unit/*.js" "**/__tests__/intergration/*.js" "**/__tests__/endpoint/*.js" | circleci tests split --split-by=timings)
-            npx jest $TEST
+            npx jest
