@@ -1,7 +1,6 @@
 const { convertPasswordInArticle, splitArticleAndFindCondition } = require("./articleDecorator");
 const articleRepository = require("./articleRepository");
 const { deletePolicy } = require("./articlePolicy");
-const UnValidResultException = require("./exception/UnValidResultException");
 
 const postUserArticle = async (article) => {
   const convertedArticle = await convertPasswordInArticle(article);
@@ -23,8 +22,13 @@ const deleteUserArticle = async (articleInfomation) => {
   return await articleRepository.deleteArticle(condition);
 };
 
+const getUserArticles = async (sequenceId) => {
+  return await articleRepository.findArticle(sequenceId);
+};
+
 module.exports = {
   postUserArticle,
   updateUserArticle,
   deleteUserArticle,
+  getUserArticles,
 };
