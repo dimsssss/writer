@@ -58,7 +58,7 @@ module.exports = {
         }
       )
       .then(() => {
-        queryInterface.addIndex("articles", ["userId"]);
+        queryInterface.addIndex("articles", ["articleId"]);
       });
   },
   down: (queryInterface) => {
