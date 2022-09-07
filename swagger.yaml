@@ -115,28 +115,25 @@ paths:
 
     delete:
       tags:
-        - freeboard
-      summary: 자유 게시글 삭제
-      description: 하나의 자유 게시글을 삭제합니다
-      operationId: deleteArticleForFreeBoard
+        - article
+      summary: 게시글 삭제
+      description: 하나의 게시글을 삭제합니다
+      operationId: deleteArticle
       requestBody:
         content:
           application/json:
             schema:
               type: object
               properties:
-                user:
-                  type: object
-                  properties:
-                    id:
-                      type: integer
-                      example: 2
-                    grade:
-                      type: integer
-                      example: 2
+                userId:
+                  type: string
+                  example: "7d0cf64a-2c53-4a0a-b5f2-6209a7ff662f"
                 articleId:
-                  type: integer
-                  example: 294
+                  type: string
+                  example: "338cc95a-1135-4133-8a37-5a4914399411"
+                password:
+                  type: string
+                  example: "asd12dd"
       responses:
         "200":
           description: successful operation
@@ -144,12 +141,12 @@ paths:
           description: Internal Server Error
     get:
       tags:
-        - freeboard
-      summary: 게시글 조회
-      description: 하나의 게시글을 조회합니다
-      operationId: getArticleForFreeBoard
+        - article
+      summary: 게시글 리스트 조회
+      description: 게시글 리스트를 가져옵니다
+      operationId: getArticles
       parameters:
-        - name: articleId
+        - name: sequenceId
           in: query
           description: 게시글 아이디
           required: true
@@ -163,24 +160,40 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  user_id:
-                    type: integer
-                    example: 2
-                  title:
-                    type: string
-                    example: "첫번째 게시글 등록 입니다"
-                  content:
-                    type: string
-                    example: "게시글 등록 하였습니다"
-                  createdAt:
-                    type: string
-                    format: date-time
-                    example: "2022-09-05 05:54:53"
-                  updatedAt:
-                    type: string
-                    format: date-time
-                    example: "2022-09-05 05:54:53"
+                type: array
+                items:
+                  type: object
+                  properties:
+                    sequenceId:
+                      type: integer
+                      example: 981
+                    articleId:
+                      type: string
+                      example: "338cc95a-1135-4133-8a37-5a4914399411"
+                    userId:
+                      type: string
+                      example: "7d0cf64a-2c53-4a0a-b5f2-6209a7ff662f"
+                    title:
+                      type: string
+                      example: "aaaaaaaaaaaaaaaa😃aaa"
+                    content:
+                      type: string
+                      example: "😃😃😃😃😃"
+                    password:
+                      type: string
+                      example: "$2b$05$bIUY0oTbBiA1vq6fvkaz9ODsPyU4dVsDnnxiitJOfl870BxPisPC."
+                    createdAt:
+                      type: string
+                      format: date-time
+                      example: "2022-09-07T02:27:05.000Z"
+                    updatedAt:
+                      type: string
+                      format: date-time
+                      example: "2022-09-07T02:27:05.000Z"
+                    deletedAt:
+                      type: string
+                      format: date-time
+                      example: ""
+
         "500":
           description: Internal Server Error

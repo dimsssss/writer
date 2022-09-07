@@ -121,4 +121,32 @@ describe("게시글 통합테스트 입니다", () => {
     const UnValidResultException = require("../../article/exception/UnValidResultException");
     await expect(deleteUserArticle(deleteData)).rejects.toThrowError(UnValidResultException);
   });
+
+  test("sequenceId가 없다면 가장 최근 글 20개를 가져온다", async () => {
+    const { getUserArticles } = require("../../article/articleService");
+    const dummy = await articleHelper.createDummyArticle();
+    const articles = await getUserArticles();
+    const reverseDummy = dummy.reverse();
+
+    expect(articles.length).toEqual(20);
+
+    for (let i = 0; i < 20; i += 1) {
+      expect(reverseDummy[i].title).toEqual(articles[i].title);
+      expect(reverseDummy[i].content).toEqual(articles[i].content);
+      expect(reverseDummy[i].password).toEqual(articles[i].password);
+    }
+  });
+
+  test("입력 sequenceId 보다 오래된 글 20개를 가져온다", async () => {
+    const { getUserArticles } = require("../../article/articleService");
+    const dummy = await articleHelper.createDummyArticle();
+    const middleArticleId = dummy[25].sequenceId;
+    const articles = await getUserArticles(middleArticleId);
+
+    expect(articles.length).toEqual(20);
+
+    for (const article of articles) {
+      expect(article.sequenceId).toBeLessThan(middleArticleId);
+    }
+  });
 });

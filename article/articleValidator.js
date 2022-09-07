@@ -1,4 +1,4 @@
-const { body } = require("express-validator");
+const { body, oneOf, query } = require("express-validator");
 const uuidVersion = 4;
 
 const validateArticle = [
@@ -43,7 +43,11 @@ const deleteArticleBody = [
   }),
 ];
 
+const getArticleQuery = oneOf([[query("sequenceId").isInt({ min: 1 })], [query("sequenceId").isEmpty()]]);
+
 module.exports = {
   validateArticle,
   updateArticleBody,
+  deleteArticleBody,
+  getArticleQuery,
 };
