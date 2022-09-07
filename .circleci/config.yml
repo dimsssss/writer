@@ -36,6 +36,8 @@ jobs:
             echo "SALT=${SALT}" >> .env
             echo "SALT_ROUND=${SALT_ROUND}" >> .env
             echo "TIMEZONE=${TIMEZONE}" >> .env
+            echo "WEATHER_BASE=${WEATHER_BASE}" >> .env
+            echo "WEATHER_API_KEY=${WEATHER_API_KEY}" >> .env
             cat .env
             npx sequelize-cli db:migrate
             npm run test

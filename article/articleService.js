@@ -1,10 +1,13 @@
-const { convertPasswordInArticle, splitArticleAndFindCondition } = require("./articleDecorator");
-const articleRepository = require("./articleRepository");
+const { convertPasswordInArticle, splitArticleAndFindCondition, insertTodayWeather } = require("./articleDecorator");
+const articleRepository = require("./infra/articleRepository");
+const weatherAPI = require("./infra/weatherAPI");
 const { deletePolicy } = require("./articlePolicy");
 
 const postUserArticle = async (article) => {
   const convertedArticle = await convertPasswordInArticle(article);
-  return await articleRepository.crateArticle(convertedArticle);
+  const todayWeather = await weatherAPI.getTodayWeather();
+  const resultArticle = insertTodayWeather(convertedArticle, todayWeather);
+  return await articleRepository.crateArticle(resultArticle);
 };
 
 const updateUserArticle = async (article) => {

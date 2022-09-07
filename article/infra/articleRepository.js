@@ -1,12 +1,12 @@
-const { articles, Sequelize } = require("../bin/database");
+const { articles, Sequelize } = require("../../bin/database");
 const { Op } = Sequelize;
-const DatabaseException = require("./exception/DatabasException");
+const ExternalSystemException = require("../exception/ExternalSystemException");
 
 const crateArticle = async (article) => {
   try {
     return await articles.create(article, { raw: true });
   } catch (err) {
-    throw new DatabaseException(err);
+    throw new ExternalSystemException(err);
   }
 };
 
@@ -33,7 +33,7 @@ const updateArticle = async (article, condition) => {
     const result = await articles.update(article, { where: condition });
     return result;
   } catch (err) {
-    throw new DatabaseException(err);
+    throw new ExternalSystemException(err);
   }
 };
 
@@ -42,7 +42,7 @@ const deleteArticle = async (condition) => {
     const result = await articles.destroy({ where: condition });
     return result;
   } catch (err) {
-    throw new DatabaseException(err);
+    throw new ExternalSystemException(err);
   }
 };
 
@@ -66,7 +66,7 @@ const findArticle = async (sequenceId) => {
     return result;
   } catch (err) {
     console.log(err);
-    throw new DatabaseException(err);
+    throw new ExternalSystemException(err);
   }
 };
 
