@@ -1,4 +1,5 @@
-const { articles } = require("../bin/database");
+const { articles, Sequelize } = require("../bin/database");
+const { Op } = Sequelize;
 const DatabaseException = require("./exception/DatabasException");
 
 const crateArticle = async (article) => {
@@ -45,4 +46,28 @@ const deleteArticle = async (condition) => {
   }
 };
 
-module.exports = { crateArticle, updateArticle, getPassword, deleteArticle, getArticle };
+const findArticle = async (sequenceId) => {
+  try {
+    let condition;
+    if (sequenceId === undefined) {
+      condition = {};
+    } else {
+      condition = {
+        sequenceId: {
+          [Op.lt]: sequenceId,
+        },
+      };
+    }
+    const result = await articles.findAll({
+      where: condition,
+      order: [["sequenceId", "DESC"]],
+      limit: 20,
+    });
+    return result;
+  } catch (err) {
+    console.log(err);
+    throw new DatabaseException(err);
+  }
+};
+
+module.exports = { crateArticle, updateArticle, getPassword, deleteArticle, getArticle, findArticle };
