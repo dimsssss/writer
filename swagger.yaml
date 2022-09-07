@@ -18,7 +18,7 @@ paths:
         - article
       summary: 게시글 수정
       description: 게시글 내용을 수정합니다
-      operationId: updateFreeArticle
+      operationId: updateArticle
       requestBody:
         description: 수정할 게시글 내용이 담겨있습니다
         content:
@@ -57,7 +57,7 @@ paths:
         - article
       summary: 게시글 등록
       description: 새로운 게시글을 등록합니다
-      operationId: postArticleToFreeBoard
+      operationId: postArticle
       requestBody:
         description:
         content:
@@ -110,6 +110,9 @@ paths:
                   password:
                     type: string
                     example: "$2b$05$326IuoERIPNJG5Y8eGhFoOvbUNYFFlwNtbVQxev4wFrISGFaN6aL6"
+                  weather:
+                    type: string
+                    example: "Partly cloudy"
         "500":
           description: Internal Server Error
 
