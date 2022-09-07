@@ -34,6 +34,10 @@ module.exports = {
             type: Sequelize.DataTypes.STRING,
             allowNull: false,
           },
+          weather: {
+            type: Sequelize.DataTypes.STRING,
+            allowNull: true,
+          },
           createdAt: {
             type: Sequelize.DataTypes.DATE,
             defaultValue: Sequelize.NOW,
