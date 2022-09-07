@@ -6,6 +6,10 @@ const convertPasswordInArticle = async (article) => {
   return { ...article, password: encryptPassword };
 };
 
+const insertTodayWeather = (article, weather) => {
+  return { ...article, weather: weather.current.condition.text };
+};
+
 const splitArticleAndFindCondition = async (article, encryptPassword) => {
   if (!(await isEqualPassword(article.password, encryptPassword))) {
     throw new UnValidResultException();
@@ -24,4 +28,5 @@ const splitArticleAndFindCondition = async (article, encryptPassword) => {
 module.exports = {
   convertPasswordInArticle,
   splitArticleAndFindCondition,
+  insertTodayWeather,
 };
