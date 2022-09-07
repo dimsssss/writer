@@ -1,7 +1,7 @@
 const { convertPasswordInArticle, splitArticleAndFindCondition, insertTodayWeather } = require("./articleDecorator");
 const articleRepository = require("./infra/articleRepository");
 const weatherAPI = require("./infra/weatherAPI");
-const { deletePolicy } = require("./articlePolicy");
+const { deletePolicy, updatePolicy } = require("./articlePolicy");
 
 const postUserArticle = async (article) => {
   const convertedArticle = await convertPasswordInArticle(article);
@@ -10,9 +10,10 @@ const postUserArticle = async (article) => {
   return await articleRepository.crateArticle(resultArticle);
 };
 
-const updateUserArticle = async (article) => {
-  const encryptPassword = await articleRepository.getPassword(article.articleId);
-  const [updateArticle, condition] = await splitArticleAndFindCondition(article, encryptPassword);
+const updateUserArticle = async (articleInfomation) => {
+  const article = await articleRepository.getArticle(articleInfomation.articleId);
+  await updatePolicy(articleInfomation, article);
+  const [updateArticle, condition] = await splitArticleAndFindCondition(articleInfomation, article.password);
   return await articleRepository.updateArticle(updateArticle, condition);
 };
 
