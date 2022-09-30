@@ -1,8 +1,8 @@
 <p align="center">
     <h1 align="center">
-        Writer
+        Writer API
     </h1>
-    <p align="center">게시글 CRUD API<a href="https://github.com/dimsssss/writer"></a>.</p>
+    <p align="center">게시글을 작성하고 조회하는 API 입니다. 게시글 작성시 현재 날씨 정보를 자동으로 저장하고 설정한 password로 삭제, 수정이 가능합니다. infinite 스크롤을 염두에 두고 API를 개발하였습니다<a href="https://github.com/dimsssss/writer"></a>.</p>
 </p>
 
 <p align="center">
@@ -22,7 +22,7 @@
         <img alt="sequelize" src="https://img.shields.io/node/v-lts/sequelize?label=sequelize&logo=sequelize">
     </a>
     <a href="https://dl.circleci.com/status-badge/redirect/gh/dimsssss/writer/tree/main">
-        <img alt="travis" src="https://dl.circleci.com/status-badge/img/gh/dimsssss/writer/tree/main.svg?style=svg">
+        <img alt="circleci" src="https://dl.circleci.com/status-badge/img/gh/dimsssss/writer/tree/main.svg?style=svg">
     </a>
 </p>
 
@@ -71,6 +71,18 @@ WEATHER_API_KEY = 발급 받은 api key
 npx sequelize-cli db:migrate
 ```
 
+## 🧪 테스트
+
+```shell
+npm run test
+```
+
+## 🧾 실행
+
+```shell
+npm run dev
+```
+
 ## 🔍 이슈 사항들
 
 https://www.notion.so/dimsss/API-b0c9d92221434031a566a74a517e3e04
@@ -78,9 +90,3 @@ https://www.notion.so/dimsss/API-b0c9d92221434031a566a74a517e3e04
 ## 🌐 API Document
 
 https://app.swaggerhub.com/apis-docs/dimsssss/post-api/1.0.0
-
-## 🧾 실행
-
-```shell
-npm run dev
-```
