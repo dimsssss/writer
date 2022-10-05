@@ -1,3 +1,6 @@
+const weatherAPI = require("../../article/infra/weatherAPI");
+jest.mock("../../article/infra/weatherAPI");
+
 describe("게시글 통합테스트", () => {
   const articleHelper = require("../testHelper");
 
@@ -7,7 +10,10 @@ describe("게시글 통합테스트", () => {
 
   test("게시글을 생성할 수 있다", async () => {
     const data = require("./dummy.json").create.article;
+    const weather = require("./dummy.json").weather;
+    weatherAPI.getTodayWeather.mockResolvedValue(weather);
     const { postUserArticle } = require("../../article/articleService");
+
     const result = await postUserArticle(data);
 
     expect(result.userId).toEqual(data.userId);
